@@ -1,0 +1,1 @@
+Program służy do pobierania pomiarów i wyświetlania ich w postaci wykresu.

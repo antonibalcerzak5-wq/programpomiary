@@ -20,18 +20,30 @@ def dodaj_pomiar(wartosc,jednostka,numer_pomiaru):
 
 
 def zbieranie_pomiaru():
+    with open("data/dane.json") as file:
+        file_data = json.load(file)
+
+    pomiary = file_data.get("pomiary", [])
     numer_pomiaru = 0
-    file = open("data/dane.json")
-    file_data = json.load(file)
-    numer_pomiary = file_data["pomiary"]
+    if pomiary:
+        numer_pomiaru = max((p.get("numer_pomiaru", 0) for p in pomiary), default=0)
+
+    numer_pomiaru += 1
     jednostka = input("Podaj jednostkę pomiaru: ")
-    wartosc = float(input("Podaj wartość pomiaru: "))
-    
-    
-    while wartosc != "":
-        numer_pomiaru += 1
-        wartosc = float(input("Podaj wartość pomiaru: "))
+
+    while True:
+        wartosc_input = input("Podaj wartość pomiaru (enter aby zakończyć): ")
+        if wartosc_input.strip() == "":
+            print("Koniec zbierania pomiarów.")
+            break
+        try:
+            wartosc = float(wartosc_input)
+        except ValueError:
+            print("Nieprawidłowa wartość. Spróbuj ponownie.")
+            continue
+
         dodaj_pomiar(wartosc, jednostka, numer_pomiaru)
+        numer_pomiaru += 1
         
 def main():
     zbieranie_pomiaru()

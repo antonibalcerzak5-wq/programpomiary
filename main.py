@@ -4,6 +4,7 @@ import numpy as np
 import json
 
 
+
 def dodaj_pomiar(wartosc,jednostka,numer_pomiaru):
     
     with open("data/dane.json") as file:
@@ -44,6 +45,14 @@ def zbieranie_pomiaru():
 
         dodaj_pomiar(wartosc, jednostka, numer_pomiaru)
         numer_pomiaru += 1
+    
+    odp = input("Czy chcesz wyświetlić wyniki? (TAK/NIE)")
+    if odp.lower() == "tak":
+        from funkcje.read import main
+        main()
+    else:
+        print("Dziękuję za skorzystanie z programu.")
+        
         
 def main():
     zbieranie_pomiaru()

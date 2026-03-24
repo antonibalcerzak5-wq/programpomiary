@@ -17,10 +17,15 @@ def read_data_from_json(file_path):
 
 def wykres(x,y, file_data):
     
+    odchylenie_standardowe = np.std(y)
+    
     plt.plot(x, y, marker='o')
     plt.title(f"Wykres pomiarów w {file_data.get('pomiary', [{}])[0].get('jednostka', '')}")
     plt.xlabel("Numer pomiaru")
     plt.ylabel("Wartość pomiaru")
+    plt.plot(x, [np.mean(y)]*len(x), color='red', linestyle='--', label='Średnia')
+    plt.fill_between(x, np.mean(y) - odchylenie_standardowe, np.mean(y) + odchylenie_standardowe, color='red', alpha=0.2, label='Odchylenie standardowe')
+    plt.legend()
     plt.grid()
     plt.show()
 

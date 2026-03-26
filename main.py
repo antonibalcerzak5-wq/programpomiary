@@ -8,6 +8,7 @@ def wybor_funkcji():
     print("Wybierz funkcję programu:")
     print("1. Dodaj pomiar")
     print("2. Wyświetl wyniki")
+    print("3. Usuń pomiar")
     while True:
         wybor = input("Wprowadź numer funkcji (1 lub 2): ")
         match wybor:
@@ -18,6 +19,12 @@ def wybor_funkcji():
                 from funkcje.read import main
                 main()
                 break
+            case "3":
+                from funkcje.remove import main
+                main()
+                break
+            case _:
+                print("Nieprawidłowy wybór. Spróbuj ponownie.")
 
 def dodaj_pomiar(wartosc,jednostka,numer_pomiaru):
     

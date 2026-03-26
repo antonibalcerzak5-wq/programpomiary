@@ -26,7 +26,7 @@ def wykres(x,y,jednostka):
     odchylenie_standardowe = np.std(y)
     
     plt.plot(x, y, marker='o')
-    plt.title(f"Wykres pomiarów w {jednostka}")
+    plt.title(f"Wykres pomiarów w {jednostka.get('jednostka')}")
     plt.xlabel("Numer pomiaru")
     plt.ylabel("Wartość pomiaru")
     plt.plot(x, [np.mean(y)]*len(x), color='red', linestyle='--', label='Średnia')
@@ -41,6 +41,7 @@ def main():
     print("Średnia wartość pomiarów:", sum(y) / len(y))
     with open("data/dane.json") as file:
         file_data = json.load(file)
+    
     wykres(x, y, file_data)
     
 if __name__ == "__main__":

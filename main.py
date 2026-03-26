@@ -4,6 +4,20 @@ import numpy as np
 import json
 
 
+def wybor_funkcji():
+    print("Wybierz funkcję programu:")
+    print("1. Dodaj pomiar")
+    print("2. Wyświetl wyniki")
+    while True:
+        wybor = input("Wprowadź numer funkcji (1 lub 2): ")
+        match wybor:
+            case "1":
+                zbieranie_pomiaru()
+                break
+            case "2":
+                from funkcje.read import main
+                main()
+                break
 
 def dodaj_pomiar(wartosc,jednostka,numer_pomiaru):
     
@@ -55,7 +69,7 @@ def zbieranie_pomiaru():
         
         
 def main():
-    zbieranie_pomiaru()
+    wybor_funkcji()
     
 if __name__ == "__main__":
     main()        
